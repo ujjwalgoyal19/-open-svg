@@ -1,0 +1,73 @@
+{
+  "name": "open-svg-tracing",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/open-svg-tracing/open_svg_tracing",
+  "targets": {
+    "execute": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry run python ./open_svg_tracing/hello.py",
+        "cwd": "apps/open-svg-tracing"
+      }
+    },
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "apps/open-svg-tracing"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "outputPath": "apps/open-svg-tracing/dist",
+        "publish": false,
+        "lockedVersions": true,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": ["{workspaceRoot}/reports/apps/open-svg-tracing/pylint.txt"],
+      "options": {
+        "outputFile": "reports/apps/open-svg-tracing/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/apps/open-svg-tracing/unittests",
+        "{workspaceRoot}/coverage/apps/open-svg-tracing"
+      ],
+      "options": {
+        "command": "poetry run pytest tests/",
+        "cwd": "apps/open-svg-tracing"
+      }
+    }
+  },
+  "tags": []
+}
